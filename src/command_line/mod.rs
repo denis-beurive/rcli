@@ -6,7 +6,12 @@ pub mod parameter;
 
 type Name = String;
 
-/// A command line specification.
+/// Command line specification
+///
+/// A command line is made of:
+/// - zero or more actions.
+/// - followed by zero or more optional parameters ("options" and "flags").
+/// - followed by zero or more mandatory parameters.
 pub struct CommandLine<'a> {
     /// An "action" defines a "sub command line".
     /// Ex: `git add ...`, `git commit ...`
@@ -25,6 +30,7 @@ pub struct CommandLine<'a> {
 }
 
 impl<'a> CommandLine<'_> {
+    /// Create a new command line.
     pub fn new() -> CommandLine<'a> {
         return CommandLine {
             actions: HashMap::new(),
